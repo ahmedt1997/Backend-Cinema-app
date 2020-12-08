@@ -9,27 +9,24 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Projection implements Serializable {
+public class Filme implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private Date dateProjection;
-    private double prix ;
+    private String titre ;
+    private String description ;
+    private String realisateur ;
+    private Date dateSortie;
+    private String photo ;
+    @OneToMany(mappedBy = "filme")
+    private Collection<Projection> projections ;
     @ManyToOne()
-    private Salle salle ;
-    @ManyToOne()
-    private  Filme filme ;
-    @OneToMany(mappedBy = "projection")
-    private Collection<Tickets> tickets ;
-    @ManyToOne
-    private Seance seance;
-
-
-
+    private Categorie categorie;
 
 }
